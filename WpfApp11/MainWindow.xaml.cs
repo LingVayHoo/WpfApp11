@@ -128,7 +128,7 @@ namespace WpfApp11
 
         private void DataBaseGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (DataBaseGrid.SelectedIndex > -1 && personDataBase.Count > 0)
+            if (DataBaseGrid.SelectedIndex > -1 && DataBaseGrid.SelectedIndex < personDataBase.Count && personDataBase.Count > 0)
             {
                 TextBoxesCleaner();
                 Tooltip.Text = String.Empty;
