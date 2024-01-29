@@ -101,6 +101,8 @@ namespace WpfApp11
             manager.OpenBankAccount<SimpleBankAccount>(personDataBase[DataBaseGrid.SelectedIndex].ID);
             TextBoxesCleaner();
             ButtonSwitcher(false, 1, 2, 3);
+            DataBaseGrid.SelectedIndex = -1;
+            Tooltip.Text = "Успешно создано!";
         }
 
         private void DepositAccountButton_Click(object sender, RoutedEventArgs e)
@@ -108,6 +110,8 @@ namespace WpfApp11
             manager.OpenBankAccount<DepositBankAccount>(personDataBase[DataBaseGrid.SelectedIndex].ID);
             TextBoxesCleaner();
             ButtonSwitcher(false, 1, 2, 3);
+            DataBaseGrid.SelectedIndex = -1;
+            Tooltip.Text = "Успешно создано!";
         }
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
@@ -124,6 +128,8 @@ namespace WpfApp11
             ButtonSwitcher(false, 1);
             RefreshDataGrid();
             Tooltip.Text = "Успешно создано!";
+            TextBoxesCleaner();
+            DataBaseGrid.SelectedIndex = -1;
         }
 
         private void DataBaseGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
