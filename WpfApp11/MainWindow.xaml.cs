@@ -245,5 +245,27 @@ namespace WpfApp11
                 Tooltip.Text = "Не все поля заполнены!";
             }
         }
+
+        private void CloseSimpleButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!String.IsNullOrWhiteSpace(SimpleAccountText.Text))
+            {
+                manager.CloseBankAccount(SimpleAccountText.Text);
+                SimpleAccountText.Text = String.Empty;
+                SimpleBalanceText.Text = String.Empty;
+                Tooltip.Text = "Счет успешно закрыт!";
+            }
+        }
+
+        private void CloseDepositButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!String.IsNullOrWhiteSpace(DepositAccountText.Text))
+            {
+                manager.CloseBankAccount(DepositAccountText.Text);
+                DepositAccountText.Text = String.Empty;
+                DepositBalanceText.Text = String.Empty;
+                Tooltip.Text = "Депозит успешно закрыт!";
+            }
+        }
     }
 }
