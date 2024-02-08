@@ -100,14 +100,13 @@
             Click="DepositAccountButton_Click" 
             FontSize="18"/>
         <Button x:Name="ConfirmButton" 
-            Content="Подтвердить" 
             HorizontalAlignment="Left" 
             Margin="30,255,0,0" 
             VerticalAlignment="Top" 
             Height="26" 
             Width="164" 
             Click="ConfirmButton_Click" 
-            FontSize="18"/>
+            FontSize="18" Content="Подтвердить"/>        
         <TextBox x:Name="SimpleAccountText" HorizontalAlignment="Left" Margin="448,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" Height="18" TextChanged="SimpleAccountText_TextChanged"/>
         <TextBlock HorizontalAlignment="Left" Margin="392,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137"><Run Language="ru-ru" Text="Счет"/></TextBlock>
         <TextBox x:Name="DepositAccountText" HorizontalAlignment="Left" Margin="448,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" Height="18" TextChanged="DepositAccountText_TextChanged"/>
@@ -124,9 +123,14 @@
             Margin="0,286,0,0" SelectionChanged="DataBaseGrid_SelectionChanged"/>
         <TextBlock x:Name="Tooltip" HorizontalAlignment="Left" Margin="544,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="228" TextAlignment="Right"/>
         <Button x:Name="ConfirmAddCredits" Content="Пополнение" HorizontalAlignment="Left" Margin="634,230,0,0" VerticalAlignment="Top" Height="36" Width="138" FontSize="18" Click="ConfirmAddCredits_Click"/>
-        <TextBox x:Name="SimpleBalanceText" HorizontalAlignment="Left" Margin="556,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88" Height="18" TextChanged="SimpleAccountText_TextChanged"/>
-        <TextBox x:Name="DepositBalanceText" HorizontalAlignment="Left" Margin="556,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88" Height="18" TextChanged="SimpleAccountText_TextChanged"/>
-        <Button x:Name="CloseSimpleButton" Content="Закрыть счет" HorizontalAlignment="Left" Margin="658,39,0,0" VerticalAlignment="Top" Height="16" Width="114" FontSize="11" Click="CloseSimpleButton_Click"/>
-        <Button x:Name="CloseDepositButton" Content="Закрыть депозит" HorizontalAlignment="Left" Margin="658,75,0,0" VerticalAlignment="Top" Height="16" Width="114" FontSize="11" Click="CloseDepositButton_Click"/>
+        <TextBox x:Name="SimpleBalanceText" HorizontalAlignment="Left" Margin="556,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88" Height="18" TextChanged="SimpleAccountText_TextChanged"/>
+        <TextBox x:Name="DepositBalanceText" HorizontalAlignment="Left" Margin="556,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88" Height="18" TextChanged="SimpleAccountText_TextChanged"/>
+        <Button x:Name="CloseSimpleButton" Content="Закрыть счет" HorizontalAlignment="Left" Margin="658,36,0,0" VerticalAlignment="Top" Height="19" Width="114" FontSize="11" Click="CloseSimpleButton_Click"/>
+        <Button x:Name="CloseDepositButton" Content="Закрыть депозит" HorizontalAlignment="Left" Margin="658,73,0,0" VerticalAlignment="Top" Height="18" Width="114" FontSize="11" Click="CloseDepositButton_Click"/>
+        <Popup x:Name="MainPopup" Width="150" Height="50" HorizontalOffset="315" VerticalOffset="177" Placement="Center" StaysOpen="False">
+            <Border BorderBrush="SteelBlue" BorderThickness="2" Background="LightBlue">
+                <TextBlock x:Name="PopupText" Text="Test" Opacity="0.985"/>
+            </Border>
+        </Popup>
     </Grid>
 </Window>

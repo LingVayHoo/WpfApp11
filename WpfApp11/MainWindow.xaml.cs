@@ -20,13 +20,14 @@ namespace WpfApp11
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly Manager manager = new Manager();
+        private readonly Manager manager = new Manager("Альфред");
         private List<Person> personDataBase;
         private Button[] buttons;
 
         public MainWindow()
         {
             InitializeComponent();
+            manager.OnActionHappened += PopupActivate;
             RefreshDataGrid();
             FillArray();
             ButtonSwitcher(false, 1, 2, 3);
@@ -73,9 +74,6 @@ namespace WpfApp11
             SimpleBalanceText.Text = String.Empty;
             DepositAccountText.Text = String.Empty;
             DepositBalanceText.Text = String.Empty;
-            //OutAccountText.Text = String.Empty;
-            //creditsValueText.Text = String.Empty;
-            //InAccountText.Text = String.Empty;
         }
 
         private void RefreshDataGrid()
@@ -102,7 +100,6 @@ namespace WpfApp11
             TextBoxesCleaner();
             ButtonSwitcher(false, 1, 2, 3);
             DataBaseGrid.SelectedIndex = -1;
-            Tooltip.Text = "Успешно создано!";
         }
 
         private void DepositAccountButton_Click(object sender, RoutedEventArgs e)
@@ -111,7 +108,6 @@ namespace WpfApp11
             TextBoxesCleaner();
             ButtonSwitcher(false, 1, 2, 3);
             DataBaseGrid.SelectedIndex = -1;
-            Tooltip.Text = "Успешно создано!";
         }
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
@@ -127,7 +123,6 @@ namespace WpfApp11
             manager.CreatePerson(dataSpl);
             ButtonSwitcher(false, 1);
             RefreshDataGrid();
-            Tooltip.Text = "Успешно создано!";
             TextBoxesCleaner();
             DataBaseGrid.SelectedIndex = -1;
         }
@@ -144,10 +139,6 @@ namespace WpfApp11
                 MobilePhoneValue.Text = personDataBase[DataBaseGrid.SelectedIndex].MobilePhone;
                 PassportIDValue.Text = personDataBase[DataBaseGrid.SelectedIndex].PassportID;
                 FillAccountFields();
-                //SimpleAccountText.Text = manager.GetAccountByIDAndType
-                //    (personDataBase[DataBaseGrid.SelectedIndex].ID, 0).GetValue.AccountNumber;
-                //DepositAccountText.Text = manager.GetAccountByIDAndType
-                //    (personDataBase[DataBaseGrid.SelectedIndex].ID, 1).GetValue.AccountNumber;
                 SimpleAccountButton.IsEnabled =
                     !manager.IsAccountExists<SimpleBankAccount>(personDataBase[DataBaseGrid.SelectedIndex].ID);
                 DepositAccountButton.IsEnabled =
@@ -215,15 +206,13 @@ namespace WpfApp11
             {
                 if (float.TryParse(creditsValueText.Text, out float result))
                 {
-                    if (manager.CashTransfer(OutAccountText.Text, InAccountText.Text, result))
-                        Tooltip.Text = "Перевод успешно завершен!";
-                    else Tooltip.Text = "Недостаточно средств!";
+                    manager.CashTransfer(OutAccountText.Text, InAccountText.Text, result);
                 }
-                else Tooltip.Text = "Неверная сумма перевода!";
+                else PopupActivate("Неверная сумма перевода!");
             }
             else
             {
-                Tooltip.Text = "Не все поля заполнены!";
+                PopupActivate("Не все поля заполнены!");
             }
         }
 
@@ -234,15 +223,13 @@ namespace WpfApp11
             {
                 if (float.TryParse(creditsValueText.Text, out float result))
                 {
-                    if (manager.CashTransfer(String.Empty, InAccountText.Text, result))
-                        Tooltip.Text = "Перевод успешно завершен!";
-                    else Tooltip.Text = "Недостаточно средств!";
+                    manager.CashTransfer(String.Empty, InAccountText.Text, result);
                 }
-                else Tooltip.Text = "Неверная сумма перевода!";
+                else PopupActivate("Неверная сумма перевода!");
             }
             else
             {
-                Tooltip.Text = "Не все поля заполнены!";
+                PopupActivate("Не все поля заполнены!");
             }
         }
 
@@ -253,7 +240,6 @@ namespace WpfApp11
                 manager.CloseBankAccount(SimpleAccountText.Text);
                 SimpleAccountText.Text = String.Empty;
                 SimpleBalanceText.Text = String.Empty;
-                Tooltip.Text = "Счет успешно закрыт!";
             }
         }
 
@@ -264,8 +250,15 @@ namespace WpfApp11
                 manager.CloseBankAccount(DepositAccountText.Text);
                 DepositAccountText.Text = String.Empty;
                 DepositBalanceText.Text = String.Empty;
-                Tooltip.Text = "Депозит успешно закрыт!";
             }
         }
+
+        private void PopupActivate(string text)
+        {
+            MainPopup.IsOpen = true;
+            PopupText.Text = text;
+        }
+
+
     }
 }

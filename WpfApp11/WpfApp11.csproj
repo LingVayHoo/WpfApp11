@@ -55,7 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AccountAction.cs" />
     <Compile Include="AccountsStorage.cs" />
+    <Compile Include="ActionLog.cs" />
     <Compile Include="DepositBankAccount.cs" />
     <Compile Include="IAccount.cs" />
     <Compile Include="BankAccount.cs" />
