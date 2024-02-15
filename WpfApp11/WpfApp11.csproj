@@ -62,8 +62,10 @@
     <Compile Include="IAccount.cs" />
     <Compile Include="BankAccount.cs" />
     <Compile Include="Manager.cs" />
+    <Compile Include="MyExtensions.cs" />
     <Compile Include="PersonDataStorage.cs" />
     <Compile Include="SimpleBankAccount.cs" />
+    <Compile Include="SubZeroException.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -103,6 +105,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Task14_Library\Task14_Library.csproj">
+      <Project>{09fbc08d-3602-4be3-b90d-9e771fccbc00}</Project>
+      <Name>Task14_Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
